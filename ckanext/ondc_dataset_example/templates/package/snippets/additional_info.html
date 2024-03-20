@@ -1,0 +1,160 @@
+{% ckan_extends %}
+
+{% block package_additional_info %}
+    {% if pkg_dict.identifier %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Identifier") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "identifier"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.title %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Title") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "title"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.description %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Description") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "description"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.data_custodian %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Data Custodian") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "data_custodian"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.point_of_contact %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Point of Contact") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "point_of_contact"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.access_rights %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Access Rights") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "access_rights"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.security_classification %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Security Classification") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "security_classification"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.keyword %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Keyword") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "keyword"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.resource_type %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Resource Type") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "resource_type"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.date_modified %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Date Modified") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "date_modified"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.access_url %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Access URL") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "access_url"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.temporal_coverage_from %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Temporal coverage from") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "temporal_coverage_from"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.temporal_coverage_to %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Temporal coverage to") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "temporal_coverage_to"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.update_frequency %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Update Frequency") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "update_frequency"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.publish_date %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Publish Date") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "publish_date"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.purpose %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Purpose") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "purpose"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.location %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Location") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "location"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.sensitive_data %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Sensitive Data") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "sensitive_data"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.file_size %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("File size") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "file_size"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.format %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Format") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "format"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.language %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Language") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "language"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.legal_authority %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Legal Authority") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "legal_authority"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.licence %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Licence") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "licence"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.disposal %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Disposal") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "disposal"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.data_status %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Data Status") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "data_status"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+    {% if pkg_dict.publisher %}
+        <tr>
+            <th scope="row" class="dataset-label">{{ _("Publisher") }}</th>
+            <td class="dataset-details">{% snippet "scheming/display_snippets/ondc_text.html", field={"field_name": "publisher"}, data=pkg_dict %}</td>
+        </tr>
+    {% endif %}
+{% endblock %}

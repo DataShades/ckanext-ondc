@@ -1,0 +1,235 @@
+scheming_presets_version: 1
+about: ONDC presets
+about_url: http://github.com/ckan/ckanext-scheming#preset
+
+presets:
+  - preset_name: ondc_identifier
+    values:
+      field_name: identifier
+      label: Identifier
+      ondc_field: true
+      validators: not_empty ondc_length_validator(200)
+      form_snippet: ondc_identifier.html
+      form_placeholder: "e.g. FIN000077"
+
+  - preset_name: ondc_title
+    values:
+      field_name: title
+      label: Title
+      ondc_field: true
+      validators: if_empty_same_as(name) not_empty unicode_safe ondc_length_validator(200)
+      form_snippet: ondc_title.html
+      form_placeholder: "e.g. A descriptive title"
+      form_attrs:
+        data-module: slug-preview-target
+
+  - preset_name: ondc_description
+    values:
+      field_name: description
+      label: Description
+      ondc_field: true
+      validators: not_empty ondc_length_validator(500) ondc_copy_to(notes)
+      form_snippet: markdown.html
+
+  - preset_name: ondc_data_custodian
+    values:
+      field_name: data_custodian
+      label: Data Custodian
+      ondc_field: true
+      validators: not_empty
+      form_snippet: ondc_data_custodian.html
+
+  - preset_name: ondc_point_of_contact
+    values:
+      field_name: point_of_contact
+      label: Point of Contact
+      ondc_field: true
+      validators: not_empty ondc_url_or_email_validator
+      form_snippet: ondc_point_of_contact.html
+      form_placeholder: URL of email
+
+  - preset_name: ondc_access_rights
+    values:
+      field_name: access_rights
+      label: Access Rights
+      ondc_field: true
+      validators: not_empty ondc_choices
+      display_snippet: ondc_text.html
+
+  - preset_name: ondc_security_classification
+    values:
+      field_name: security_classification
+      label: Security Classification
+      ondc_field: true
+      validators: not_empty ondc_choices
+      display_snippet: ondc_text.html
+
+  - preset_name: ondc_keyword
+    values:
+      field_name: keyword
+      label: Keyword
+      ondc_field: true
+      validators: not_empty tag_string_convert ondc_copy_to(tag_string)
+      classes: ["control-full"]
+      form_attrs:
+        data-module: autocomplete
+        data-module-tags: ""
+        data-module-source: /api/2/util/tag/autocomplete?incomplete=?
+        class": ""
+
+  - preset_name: ondc_resource_type
+    values:
+      field_name: resource_type
+      label: Resource Type
+      ondc_field: true
+      validators: not_empty ondc_choices
+      display_snippet: ondc_text.html
+
+  - preset_name: ondc_date_modified
+    values:
+      field_name: date_modified
+      label: Date Modified
+      ondc_field: true
+      validators: not_empty ondc_date_parser ondc_convert_to_json_if_datetime
+      display_snippet: datetime.html
+      form_placeholder: "e.g. 1973-09, 1973-09-17, 1973-09-17T23:20:30+04:00"
+
+  - preset_name: ondc_access_url
+    values:
+      field_name: access_url
+      label: Access URL
+      ondc_field: true
+      validators: ignore_missing url_validator
+
+  - preset_name: ondc_temporal_coverage_from
+    values:
+      field_name: temporal_coverage_from
+      label: Temporal coverage from
+      ondc_field: true
+      validators: ignore_missing ondc_date_parser ondc_convert_to_json_if_datetime
+      display_snippet: datetime.html
+      form_placeholder: "e.g. 1973-09, 1973-09-17, 1973-09-17T23:20:30+04:00"
+
+  - preset_name: ondc_temporal_coverage_to
+    values:
+      field_name: temporal_coverage_to
+      label: Temporal coverage to
+      ondc_field: true
+      validators: ignore_missing ondc_date_parser ondc_convert_to_json_if_datetime
+      display_snippet: datetime.html
+      form_placeholder: "e.g. 1973-09, 1973-09-17, 1973-09-17T23:20:30+04:00"
+
+  - preset_name: ondc_update_frequency
+    values:
+      field_name: update_frequency
+      label: Update Frequency
+      ondc_field: true
+      validators: ignore_missing ondc_choices
+      display_snippet: ondc_text.html
+
+  - preset_name: ondc_publish_date
+    values:
+      field_name: publish_date
+      label: Publish Date
+      ondc_field: true
+      validators: ignore_missing ondc_date_parser ondc_convert_to_json_if_datetime
+      display_snippet: datetime.html
+      form_placeholder: "e.g. 1973-09, 1973-09-17, 1973-09-17T23:20:30+04:00"
+
+  - preset_name: ondc_purpose
+    values:
+      field_name: purpose
+      label: Purpose
+      ondc_field: true
+      validators: ignore_missing ondc_length_validator(500)
+      form_placeholder: "e.g. The APS Employee Census results for 2000-2022 enables richer insights to transform
+      the APS and improve productivity"
+
+  - preset_name: ondc_location
+    values:
+      field_name: location
+      label: Location
+      ondc_field: true
+      validators: ignore_missing ondc_choices
+      display_snippet: ondc_text.html
+      help_text: "*Other territories include Jervis Bay Territory, Territory of Christmas Island, 
+      Territory of the Cocos (Keeling) Islands and Norfolk Island"
+
+  - preset_name: ondc_sensitive_data
+    values:
+      field_name: sensitive_data
+      label: Sensitive Data
+      ondc_field: true
+      validators: ignore_missing ondc_choices
+      display_snippet: ondc_text.html
+
+  - preset_name: ondc_file_size
+    values:
+      field_name: file_size
+      label: File size
+      ondc_field: true
+      validators: ignore_missing
+      form_placeholder: "e.g. 4MB, 5GB, TB, PB, 10 data tables in SQL"
+
+  - preset_name: ondc_format
+    values:
+      field_name: format
+      label: Format
+      ondc_field: true
+      validators: ignore_missing
+      form_placeholder: "e.g. CSV, DataCube, GeographicData, JPEG, MP4, WebPage, WebApplication"
+
+  - preset_name: ondc_language
+    values:
+      field_name: language
+      label: Language
+      ondc_field: true
+      validators: ignore_missing
+      form_placeholder: "e.g. English"
+      help_text: "Select from Australian Standard Classification of Languages (ASCL)"
+
+  - preset_name: ondc_legal_authority
+    values:
+      field_name: legal_authority
+      label: Legal Authority
+      ondc_field: true
+      validators: ignore_missing ondc_length_validator(200)
+      form_placeholder: "e.g. Legal authority for APS Employee Census results is Public Service Act 1999"
+      help_text: "For Legislation as the legal authority, select from https://www.legislation.gov.au/"
+
+  - preset_name: ondc_licence
+    values:
+      field_name: licence
+      label: Licence
+      ondc_field: true
+      validators: ignore_missing ondc_copy_to(license_id)
+      form_snippet: ondc_licence.html
+      display_snippet: ondc_text.html
+
+  - preset_name: ondc_disposal
+    values:
+      field_name: disposal
+      label: Disposal
+      ondc_field: true
+      validators: ignore_missing
+      form_placeholder: "e.g. \"Destroy 7 years after last entry\", \"Destroy 75 years after date of birth 
+      of employee\", \"Retain as national archives\""
+
+  - preset_name: ondc_data_status
+    values:
+      field_name: data_status
+      label: Data Status
+      ondc_field: true
+      validators: ignore_missing ondc_choices
+      form_snippet: ondc_data_status.html
+      display_snippet: ondc_text.html
+
+  - preset_name: ondc_publisher
+    values:
+      field_name: publisher
+      label: Publisher
+      ondc_field: true
+      validators: ignore_missing
+      form_placeholder: "e.g. Department of Finance"
+      form_snippet: ondc_publisher.html
+      display_snippet: ondc_text.html

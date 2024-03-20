@@ -1,0 +1,35 @@
+{% ckan_extends %}
+
+
+{% block basic_fields %}
+    {% snippet "scheming/form_snippets/ondc_identifier.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_title.html", data=data, errors=errors %}
+
+    {% snippet "package/snippets/ondc_name.html", data=data, errors=errors %}
+    {% snippet "package/snippets/ondc_organization.html", data=data, errors=errors %}
+
+    {% snippet "scheming/form_snippets/ondc_description.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_data_custodian.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_point_of_contact.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_access_rights.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_security_classification.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_keyword.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_resource_type.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_date_modified.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_access_url.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_temporal_coverage_from.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_temporal_coverage_to.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_update_frequency.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_publish_date.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_purpose.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_location.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_sensitive_data.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_file_size.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_format.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_language.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_legal_authority.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_licence.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_disposal.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_data_status.html", data=data, errors=errors %}
+    {% snippet "scheming/form_snippets/ondc_publisher.html", data=data, errors=errors %}
+{% endblock %}

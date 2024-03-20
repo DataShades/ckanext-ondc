@@ -1,0 +1,14 @@
+# ondc-js:
+#   filter: rjsmin
+#   output: ckanext-ondc/%(version)s-ondc.js
+#   contents:
+#     - js/ondc.js
+#   extra:
+#     preload:
+#       - base/main
+
+# ondc-css:
+#   filter: cssrewrite
+#   output: ckanext-ondc/%(version)s-ondc.css
+#   contents:
+#     - css/ondc.css

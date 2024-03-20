@@ -1,0 +1,40 @@
+{% import "macros/form.html" as form %}
+
+{% if "scheming_datasets" in g.plugins %}
+    {% set field_name = field.field_name %}
+    {% set label = field.label %}
+    {% set form_placeholder = field.form_placeholder %}
+    {% set classes = field.classes if "classes" in field else ["control-medium"] %}
+    {% set form_attrs = field.get("form_attrs", {}) %}
+    {% set is_required = h.scheming_field_required(field) %}
+    {% set help_text = field.help_text %}
+{% else %}
+    {% set field_name = "file_size" %}
+    {% set label = "File size" %}
+    {% set form_placeholder = "e.g. 4MB, 5GB, TB, PB, 10 data tables in SQL" %}
+    {% set classes = ["control-medium"] %}
+    {% set form_attrs = {} %}
+    {% set is_required = False %}
+    {% set help_text = "" %}
+{% endif %}
+
+{% call form.input(
+    field_name,
+    id="field-" + field_name,
+    label=label,
+    placeholder=form_placeholder,
+    value=data[field_name],
+    error=errors[field_name],
+    classes=classes,
+    attrs=dict({"class": "form-control"}, **form_attrs),
+    is_required=is_required
+    ) %}
+
+    {% if help_text %}
+        {% set text = help_text %}
+        {{ form.info(
+            text=text|safe,
+            inline=false
+        ) }}
+    {% endif %}
+{% endcall %}

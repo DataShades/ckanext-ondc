@@ -1,0 +1,40 @@
+{% import "macros/form.html" as form %}
+
+{% if "scheming_datasets" in g.plugins %}
+    {% set field_name = field.field_name %}
+    {% set label = field.label %}
+    {% set form_placeholder = field.form_placeholder %}
+    {% set classes = field.classes if "classes" in field else ["control-medium"] %}
+    {% set form_attrs = field.get("form_attrs", {}) %}
+    {% set is_required = h.scheming_field_required(field) %}
+    {% set help_text = field.help_text %}
+{% else %}
+    {% set field_name = "temporal_coverage_from" %}
+    {% set label = "Temporal coverage from" %}
+    {% set form_placeholder = "e.g. 1973-09, 1973-09-17, 1973-09-17T23:20:30+04:00" %}
+    {% set classes = ["control-medium"] %}
+    {% set form_attrs = {} %}
+    {% set is_required = False %}
+    {% set help_text = "" %}
+{% endif %}
+
+{% call form.input(
+    field_name,
+    id="field-" + field_name,
+    label=label,
+    placeholder=form_placeholder,
+    value=data[field_name],
+    error=errors[field_name],
+    classes=classes,
+    attrs=dict({"class": "form-control"}, **form_attrs),
+    is_required=is_required
+    ) %}
+
+    {% if help_text %}
+        {% set text = help_text %}
+        {{ form.info(
+            text=text|safe,
+            inline=false
+        ) }}
+    {% endif %}
+{% endcall %}

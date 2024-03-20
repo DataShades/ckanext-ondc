@@ -1,0 +1,88 @@
+scheming_version: 1
+dataset_type: dataset
+about: A reimplementation of the default CKAN dataset schema
+about_url: http://github.com/ckan/ckanext-scheming
+
+dataset_fields:
+  - preset: ondc_identifier
+
+  - preset: ondc_title
+
+  # CKAN mandatory field
+  - field_name: name
+    label: URL
+    validators: not_empty unicode_safe name_validator package_name_validator
+    form_snippet: slug.html
+    form_placeholder: eg. my-dataset
+
+  # CKAN mandatory field
+  - field_name: owner_org
+    label: Organization
+    validators: owner_org_validator unicode_safe
+    form_snippet: organization.html
+
+  - preset: ondc_description
+
+  - preset: ondc_data_custodian
+
+  - preset: ondc_point_of_contact
+
+  - preset: ondc_access_rights
+
+  - preset: ondc_security_classification
+
+  - preset: ondc_keyword
+
+  - preset: ondc_resource_type
+
+  - preset: ondc_date_modified
+
+  - preset: ondc_access_url
+
+  - preset: ondc_temporal_coverage_from
+
+  - preset: ondc_temporal_coverage_to
+
+  - preset: ondc_update_frequency
+
+  - preset: ondc_publish_date
+
+  - preset: ondc_purpose
+
+  - preset: ondc_location
+
+  - preset: ondc_sensitive_data
+
+  - preset: ondc_file_size
+
+  - preset: ondc_format
+
+  - preset: ondc_language
+
+  - preset: ondc_legal_authority
+
+  - preset: ondc_licence
+
+  - preset: ondc_disposal
+
+  - preset: ondc_data_status
+
+  - preset: ondc_publisher
+
+resource_fields:
+  - field_name: url
+    label: URL
+    preset: resource_url_upload
+
+  - field_name: name
+    label: Name
+    form_placeholder: eg. January 2011 Gold Prices
+
+  - field_name: description
+    label: Description
+    form_snippet: markdown.html
+    form_placeholder: Some useful notes about the data
+
+  - field_name: format
+    label: Format
+    preset: resource_format_autocomplete

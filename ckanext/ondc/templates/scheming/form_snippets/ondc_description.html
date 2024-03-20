@@ -1,0 +1,37 @@
+{% import 'macros/form.html' as form %}
+
+{% if "scheming_datasets" in g.plugins %}
+    {% set field_name = field.field_name %}
+    {% set label = field.label %}
+    {% set form_placeholder = field.form_placeholder %}
+    {% set form_attrs = field.get("form_attrs", {}) %}
+    {% set is_required = h.scheming_field_required(field) %}
+    {% set help_text = field.help_text %}
+{% else %}
+    {% set field_name = "description" %}
+    {% set label = "Description" %}
+    {% set form_placeholder = "" %}
+    {% set form_attrs = {} %}
+    {% set is_required = True %}
+    {% set help_text = "" %}
+{% endif %}
+
+{% call form.markdown(
+    field_name,
+    id='field-' + field_name,
+    label=label,
+    placeholder=form_placeholder,
+    value=data[field_name],
+    error=errors[field_name],
+    attrs=dict({"class": "form-control"}, **form_attrs),
+    is_required=is_required
+    ) %}
+
+    {% if help_text %}
+        {% set text = help_text %}
+        {{ form.info(
+            text=text|safe,
+            inline=false
+        ) }}
+    {% endif %}
+{% endcall %}

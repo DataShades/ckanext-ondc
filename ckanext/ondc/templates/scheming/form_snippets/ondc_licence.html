@@ -1,0 +1,54 @@
+{% import "macros/form.html" as form %}
+
+{% if "scheming_datasets" in g.plugins %}
+    {% set field_name = field.field_name %}
+    {% set label = field.label %}
+    {% set form_placeholder = field.form_placeholder %}
+    {% set classes = field.classes if "classes" in field else ["control-medium"] %}
+    {% set form_attrs = field.get("form_attrs", {}) %}
+    {% set is_required = h.scheming_field_required(field) %}
+    {% set help_text = field.help_text %}
+{% else %}
+    {% set field_name = "licence" %}
+    {% set label = "Licence" %}
+    {% set form_placeholder = "" %}
+    {% set classes = ["control-medium"] %}
+    {% set form_attrs = {} %}
+    {% set is_required = False %}
+    {% set help_text = "" %}
+{% endif %}
+
+{% set options=[] %}
+{% do options.append({
+        "value": "",
+        "label": ""}) %}
+{% set licenses = licenses|sort %}
+{% for license_desc, license_id in  h.license_options(data.get(field_name)) %}
+    {% if license_id or not is_required %}
+        {% do options.append({
+            "value": license_id,
+            "label": license_desc}) %}
+    {% endif %}
+{% endfor %}
+
+{% call form.select(
+    field_name,
+    id="field-" + field_name,
+    label=label,
+    options=options,
+    selected=data.get(field_name, "notspecified"),
+    error=errors[field_name],
+    classes=classes,
+    attrs=form_attrs if form_attrs else {
+      "data-module": "autocomplete"
+    },
+    is_required=is_required) %}
+
+    {% if help_text %}
+        {% set text = help_text %}
+        {{ form.info(
+            text=text|safe,
+            inline=false
+        ) }}
+    {% endif %}
+{% endcall %}

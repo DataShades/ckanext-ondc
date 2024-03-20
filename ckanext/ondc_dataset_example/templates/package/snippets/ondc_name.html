@@ -1,0 +1,50 @@
+{% import "macros/form.html" as form %}
+
+{% if "scheming_datasets" in g.plugins %}
+    {% set field_name = field.field_name %}
+    {% set label = field.label %}
+    {% set form_placeholder = field.form_placeholder %}
+    {% set is_required = h.scheming_field_required(field) %}
+    {% set help_text = field.help_text %}
+{% else %}
+    {% set field_name = "name" %}
+    {% set label = "URL" %}
+    {% set form_placeholder = "eg. my-dataset" %}
+    {% set is_required = True %}
+    {% set help_text = "" %}
+{% endif %}
+
+{% set object_type = "dataset" %}
+{% set read_endpoint = '.read' if h.ckan_version() > '2.9' else '_read' %}
+
+{%- if entity_type == 'dataset' %}
+    {%- set controller = 'package' -%}
+{%- elif entity_type == 'organization' %}
+    {%- set controller = 'organization' -%}
+{%- elif entity_type == 'group' -%}
+    {%- set controller = 'group' -%}
+{%- endif -%}
+
+{%- set module_placeholder = '<' + object_type + '>' -%}
+
+{%- set prefix = h.url_for(object_type + read_endpoint, id='') -%}
+{%- set domain = h.url_for(object_type + read_endpoint, id='', qualified=true) -%}
+{%- set domain = domain|replace("http://", "")|replace("https://", "") -%}
+{%- set attrs = {
+    'data-module': 'slug-preview-slug',
+    'data-module-prefix': domain,
+    'data-module-placeholder': module_placeholder } -%}
+
+{{ form.prepend(
+    field_name,
+    id='field-' + field_name,
+    label=label,
+    prepend=prefix,
+    placeholder=form_placeholder,
+    value=data[field_name],
+    error=errors[field_name],
+    attrs=attrs,
+    is_required=is_required
+    ) }}
+
+{#{%- snippet 'scheming/form_snippets/help_text.html', field=field -%}#}
