@@ -19,7 +19,7 @@ and compatibility of metadata fields according to the ONDC guidelines.
 ## ONDC presets
 
 ckanext-ondc provides
-a [set of ONDC presets](https://github.com/ckan/ckanext-ondc/blob/master/ckanext/ondc/presets.yaml)
+a [set of ONDC presets](https://github.com/DataShades/ckanext-ondc/blob/master/ckanext/ondc/presets.yaml)
 that can be used to standardize the metadata fields of a CKAN portal.
 Ensure the `ckanext-ondc` extension is installed. Then, integrate ONDC presets into your CKAN portal by adding the
 following line to your CKAN configuration file (`ckan.ini` or `production.ini`):
@@ -59,7 +59,7 @@ This YAML snippet outlines how to define a schema for your datasets using the ck
 `# Include additional fields as needed, following the same structure.` with additional fields as required by
 your schema, referencing the provided presets.
 
-[Example of a dataset schema with ONDC presets](https://github.com/ckan/ckanext-ondc/blob/master/ckanext/ondc/dataset.yaml).
+[Example of a dataset schema with ONDC presets](https://github.com/DataShades/ckanext-ondc/blob/master/ckanext/ondc/dataset.yaml).
 
 Add your datasets schema to the CKAN configuration file:
 
@@ -92,7 +92,7 @@ Then, create the `templates/scheming/form_snippets/custom_title.html` file incor
 ### Defining Custom Fields Without Using Scheming
 
 Even if you're not utilizing ckanext-scheming, the ONDC presets can still be applied to define custom fields in your
-CKAN configuration file. This approach involves customizing the dataset schema through the IDatasetForm plugin
+CKAN configuration file. This approach involves customizing the dataset schema through the `IDatasetForm` plugin
 interface. Within the plugin, you can specify the schema for creating, updating, and displaying datasets. The schema
 is represented as a dictionary, where each key is a field name and its value is a list of validators and converters.
 For instance, to add a custom text field to the schema:
@@ -154,7 +154,7 @@ class OndcDatasetsExamplePlugin(plugins.SingletonPlugin, tk.DefaultDatasetForm):
         return True
 ```
 
-The validators used in the IDatasetForm plugin's schema are aligned with those specified in the corresponding ONDC
+The validators used in the `IDatasetForm` plugin's schema are aligned with those specified in the corresponding ONDC
 preset. For functions that create (create_package_schema) and update (update_package_schema) package schemas, we
 incorporate the convert_to_extras validator. This validator ensures that the field is stored within the dataset's
 extras. Conversely, within the show_package_schema function, we utilize the convert_from_extras validator to fetch the
@@ -180,7 +180,7 @@ class OndcDatasetsExamplePlugin(plugins.SingletonPlugin, tk.DefaultDatasetForm):
 ```
 
 To ensure that ONDC fields are properly displayed, you will need to customize some of the templates used by CKAN. A
-direct approach involves replacing the basic_fields block in the package_form.html template with a block dedicated to
+direct approach involves replacing the `basic_fields` block in the `templates/package/snippets/package_form.html` template with a block dedicated to
 rendering custom fields. You can achieve this by creating a new template file within the templates directory of your
 extension. The file should be named package/snippets/package_form.html. Inside this file, you will define the structure
 and presentation of your custom fields as follows:
@@ -198,7 +198,7 @@ In the provided code example, form snippets correspond to the form_snippet key v
 
 To display ONDC fields on the dataset detail page, you will need to override the default rendering of extras. This can
 be achieved by creating a new template file in your extension's templates directory. Name this file
-templates/package/snippets/additional_info.html. This template will specifically handle the presentation of ONDC fields
+`templates/package/snippets/additional_info.html`. This template will specifically handle the presentation of ONDC fields
 within the "Additional Information" section of the dataset page. Here's an example of how this could be structured:
 
 ```html
