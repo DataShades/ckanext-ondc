@@ -10,6 +10,14 @@ and compatibility of metadata fields according to the ONDC guidelines.
 
 - [ckanext-ondc](#ckanext-ondc)
     - [Content](#content)
+    - [ONDC presets](#ondc-presets)
+        - [Using ONDC presets with ckanext-scheming](#using-ondc-presets-with-ckanext-scheming)
+        - [Customizing Presets](#customizing-presets)
+        - [Defining Custom Fields Without Using Scheming](#defining-custom-fields-without-using-scheming)
+    - [Examples of import/export the ONDC attributes](#examples-of-importexport-the-ondc-attributes)
+        - [Exporting ONDC Attributes of a Dataset](#exporting-ondc-attributes-of-a-dataset)
+        - [Searching for Datasets by ONDC Attributes](#searching-for-datasets-by-ondc-attributes)
+        - [Creating, Updating, and Patching Datasets with ONDC Attributes](#creating-updating-and-patching-datasets-with-ondc-attributes) 
     - [Requirements](#requirements)
     - [Installation](#installation)
     - [Developer installation](#developer-installation)
@@ -230,6 +238,57 @@ To activate this plugin, simply append the following line to your CKAN configura
 
 ```ini
 ckan.plugins = ondc ondc_dataset_example
+```
+
+## Examples of import/export the ONDC attributes
+
+The extension introduces specific actions to facilitate working with ONDC attributes within datasets. Here's an overview
+of these actions and examples of how to use them through the command-line interface (CLI) via `ckanapi`:
+
+### Exporting ONDC Attributes of a Dataset
+
+- **Action Name:** `ondc_package_show`
+- **Purpose:** Returns a dictionary containing only the ONDC attributes of a specified dataset.
+- **Required Parameter:** `id` (the ID or name of the dataset)
+- **Example Command:**
+
+```bash
+ckanapi action ondc_package_show id=<your-dataset-id-or-name>
+```
+
+### Searching for Datasets by ONDC Attributes
+
+- **Action Name:** `ondc_package_search`
+- **Purpose:** Returns a list of dictionaries, each containing the ONDC attributes of datasets that match the search
+  criteria.
+- **Required Parameter:** `q` (your search query)
+- **Example Command:**
+
+```bash
+ckanapi action ondc_package_search q=<your-search-query>
+```
+
+### Creating, Updating, and Patching Datasets with ONDC Attributes
+
+For creating, updating, and patching datasets to include ONDC attributes, you can use the standard CKAN actions with
+added ONDC fields.
+
+- **Create a Dataset:**
+
+```bash
+ckanapi action package_create name=<your-dataset-name> identifier=<your-identifier> title=<your-title>
+```
+
+- **Update a Dataset:**
+
+```bash
+ckanapi action package_update id=<your-dataset-id-or-name> identifier=<new-identifier> title=<your-title>
+```
+
+- **Patch a Dataset:**
+
+```bash
+ckanapi action package_patch id=<your-dataset-id-or-name> identifier=<new-identifier>
 ```
 
 ## Requirements

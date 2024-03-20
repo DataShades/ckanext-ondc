@@ -68,7 +68,7 @@ def ondc_package_search(
 def _clean_ondc_schema(pkg_dict: DataDict) -> None:
     """Remove fields from the package dictionary that are not part of the ONDC
     schema."""
-    if "scheming_datasets" in tk.g.plugins:
+    if "scheming_datasets" in tk.config.get('ckan.plugins'):
         dataset_fields: list[dict[str, Any]] = tk.h.scheming_dataset_schemas(
             pkg_dict["type"]
         )["dataset"]["dataset_fields"]
