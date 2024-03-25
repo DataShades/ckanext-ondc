@@ -1,4 +1,4 @@
-[![Tests](https://github.com//ckanext-ondc/workflows/Tests/badge.svg?branch=main)](https://github.com//ckanext-ondc/actions)
+[![Tests](https://github.com/DataShades/ckanext-ondc/workflows/Tests/badge.svg)](https://github.com/DataShades/ckanext-ondc/actions/workflows/test.yml)
 
 # ckanext-ondc
 
@@ -27,8 +27,42 @@ and compatibility of metadata fields according to the ONDC guidelines.
 ## ONDC presets
 
 ckanext-ondc provides
-a [set of ONDC presets](https://github.com/DataShades/ckanext-ondc/blob/master/ckanext/ondc/presets.yaml)
-that can be used to standardize the metadata fields of a CKAN portal.
+a [set of ONDC presets](https://github.com/DataShades/ckanext-ondc/blob/master/ckanext/ondc/presets.yaml) that can be
+used to standardize the metadata fields of a CKAN portal.
+Below is a list of ONDC metadata attributes and their corresponding ONDC presets and CKAN machine names:
+
+| ONDC metadata attribute | Preset name                  | CKAN machine name       |
+|-------------------------|------------------------------|-------------------------|
+| Identifier              | ondc_identifier              | identifier              |
+| Title                   | ondc_title                   | title                   |
+| Description             | ondc_description             | description             |
+| Data Custodian          | ondc_data_custodian          | data_custodian          |
+| Point of Contact        | ondc_point_of_contact        | point_of_contact        |
+| Access Rights           | ondc_access_rights           | access_rights           |
+| Security Classification | ondc_security_classification | security_classification |
+| Keyword                 | ondc_keyword                 | keyword                 |
+| Resource Type           | ondc_resource_type           | resource_type           |
+| Date Modified           | ondc_date_modified           | date_modified           |
+| Access URL              | ondc_access_url              | access_url              |
+| Temporal coverage from  | ondc_temporal_coverage_from  | temporal_coverage_from  |
+| Temporal coverage to    | ondc_temporal_coverage_to    | temporal_coverage_to    |
+| Update Frequency        | ondc_update_frequency        | update_frequency        |
+| Publish Date            | ondc_publish_date            | publish_date            |
+| Purpose                 | ondc_purpose                 | purpose                 |
+| Location                | ondc_location                | location                |
+| Sensitive Data          | ondc_sensitive_data          | sensitive_data          |
+| File size               | ondc_file_size               | file_size               |
+| Format                  | ondc_format                  | format                  |
+| Language                | ondc_language                | language                |
+| Legal Authority         | ondc_legal_authority         | legal_authority         |
+| Licence                 | ondc_licence                 | licence                 |
+| Disposal                | ondc_disposal                | disposal                |
+| Data Status             | ondc_data_status             | data_status             |
+| Publisher               | ondc_publisher               | publisher               |
+
+Preset names are used to define the schema for datasets, while CKAN machine names are used to store the metadata in the
+database.
+
 Ensure the `ckanext-ondc` extension is installed. Then, integrate ONDC presets into your CKAN portal by adding the
 following line to your CKAN configuration file (`ckan.ini` or `production.ini`):
 
@@ -106,6 +140,7 @@ is represented as a dictionary, where each key is a field name and its value is 
 For instance, to add a custom text field to the schema:
 
 ```python
+import ckan.plugins as plugins
 import ckan.plugins.toolkit as tk
 from ckan.types import Schema
 
@@ -232,7 +267,7 @@ within the "Additional Information" section of the dataset page. Here's an examp
 {% endblock %}
 ```
 
-This extension includes a practical example, showcasing how to construct a schema for your ONDC fields without relying
+This extension includes a [practical example]((https://github.com/DataShades/ckanext-ondc/blob/master/ckanext/ondc_dataset_example)), showcasing how to construct a schema for your ONDC fields without relying
 on ckanext-scheming. The example is implemented through the ondc_dataset_example plugin.
 To activate this plugin, simply append the following line to your CKAN configuration file:
 
