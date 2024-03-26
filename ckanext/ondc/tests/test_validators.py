@@ -1,8 +1,6 @@
-import ckan.lib.navl.dictization_functions as df
-import ckan.plugins.toolkit as tk
 import pytest
-from ckan import model
-from ckan.tests.helpers import call_action
+
+import ckan.plugins.toolkit as tk
 
 
 @pytest.mark.usefixtures("with_plugins")
@@ -80,7 +78,6 @@ class TestCopyToValidator:
         value = "123"
 
         validator = tk.get_validator("ondc_copy_to")(field_to)
-
         data, error = tk.navl_validate(
             {field_from: value},
             {field_from: [validator]},
@@ -113,3 +110,36 @@ class TestDateParser:
     def test_invalid_values(self, value):
         with pytest.raises(tk.Invalid):
             tk.get_validator("ondc_date_parser")(value, {})
+
+
+@pytest.mark.usefixtures("with_plugins")
+class TestChoicesValidator:
+    @pytest.mark.parametrize(
+        "field, value",
+        [
+            ("access_rights", "Open"),
+            ("security_classification", "UNOFFICIAL"),
+            ("resource_type", "collection"),
+            ("update_frequency", "Triennial"),
+        ],
+    )
+    def test_valid_choices(self, field, value):
+        validator = tk.get_validator("ondc_choices")
+        data, error = tk.navl_validate(
+            {field: value},
+            {field: [validator]},
+        )
+        assert not error
+
+    @pytest.mark.parametrize(
+        "field, value",
+        [
+            ("access_rights", "xxx")
+    ])
+    def test_invalid_choices(self, field, value):
+        validator = tk.get_validator("ondc_choices")
+        data, error = tk.navl_validate(
+            {field: value},
+            {field: [validator]},
+        )
+        assert error

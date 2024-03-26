@@ -92,7 +92,7 @@ def ondc_choices(
     raise tk.Invalid(('Unexpected choice "%s"') % value)
 
 
-def ondc_convert_to_json_if_datetime(date, context):
+def ondc_convert_to_json_if_datetime(date: str, context: Context) -> Any:
     if isinstance(date, datetime):
         return date.isoformat()
 

@@ -1,5 +1,6 @@
-import ckan.plugins as p
 import pytest
+
+import ckan.plugins as p
 
 
 @pytest.mark.ckan_config("ckan.plugins", "ondc")

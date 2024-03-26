@@ -3,12 +3,8 @@ from __future__ import annotations
 from typing import Any
 
 import ckan.plugins.toolkit as tk
-from ckan.logic import validate
 from ckan.types import Context, DataDict
 from ckan.types.logic import ActionResult
-
-from ckanext.ondc.logic import schema
-
 
 ONDC_FIELDS = [
     "identifier",
@@ -47,8 +43,7 @@ def ondc_package_show(
     """Show a package by its identifier. Show only the fields that are part of the
     ONDC"""
     tk.check_access("package_show", context, data_dict)
-    pkg_id = data_dict["id"]
-    pkg_dict: dict[str, Any] = tk.get_action("package_show")(context, {"id": pkg_id})
+    pkg_dict: dict[str, Any] = tk.get_action("package_show")(context, data_dict)
     _clean_ondc_schema(pkg_dict)
     return pkg_dict
 
@@ -68,7 +63,7 @@ def ondc_package_search(
 def _clean_ondc_schema(pkg_dict: DataDict) -> None:
     """Remove fields from the package dictionary that are not part of the ONDC
     schema."""
-    if "scheming_datasets" in tk.config.get('ckan.plugins'):
+    if "scheming_datasets" in tk.config.get("ckan.plugins"):
         dataset_fields: list[dict[str, Any]] = tk.h.scheming_dataset_schemas(
             pkg_dict["type"]
         )["dataset"]["dataset_fields"]
@@ -84,6 +79,8 @@ def _clean_ondc_schema(pkg_dict: DataDict) -> None:
         for key in keys_to_delete:
             del pkg_dict[key]
     else:
-        keys_to_delete = [field for field in list(pkg_dict.keys()) if field not in ONDC_FIELDS]
+        keys_to_delete = [
+            field for field in list(pkg_dict.keys()) if field not in ONDC_FIELDS
+        ]
         for key in keys_to_delete:
             del pkg_dict[key]
