@@ -2,9 +2,22 @@
 
 # ckanext-ondc
 
-CKAN extension designed to standardize and facilitate the integration of the ONDC metadata
+CKAN extension designed to standardize and facilitate the integration of ONDC metadata
 attributes across various CKAN portals. It enables seamless import/export of datasets, ensuring uniformity
 and compatibility of metadata fields according to the ONDC guidelines.
+
+## What is ONDC metadata?
+
+The Australian Governement's Office of the National Data Commissioner (ONDC) has developed a set of 26 metadata attributes as a baseline standard for discoverability and reusability of data assets across the Australian Government.
+
+These 26 metadata attributes can be further grouped into:
+
+- 10 core attributes that are critical for data management and discovery, and
+- 16 additional attributes that further support discovery and reuse of data assets.
+
+All agencies are advised to include all 26 metadata attributes as best practice to describe their data assets. The 10 core attributes are mandatory for the Australian Government Data Catalogue.
+
+Further information can be found [here](https://www.datacommissioner.gov.au/sites/default/files/2023-12/ONDC-Guide-on-Metadata-Attributes-November-23.pdf) and [here](https://www.datacommissioner.gov.au/sites/default/files/2023-04/ONDC%20Metadata%20Attributes%202023_0.pdf).
 
 ## Content
 
@@ -17,7 +30,7 @@ and compatibility of metadata fields according to the ONDC guidelines.
     - [Examples of import/export the ONDC attributes](#examples-of-importexport-the-ondc-attributes)
         - [Exporting ONDC Attributes of a Dataset](#exporting-ondc-attributes-of-a-dataset)
         - [Searching for Datasets by ONDC Attributes](#searching-for-datasets-by-ondc-attributes)
-        - [Creating, Updating, and Patching Datasets with ONDC Attributes](#creating-updating-and-patching-datasets-with-ondc-attributes) 
+        - [Creating, Updating, and Patching Datasets with ONDC Attributes](#creating-updating-and-patching-datasets-with-ondc-attributes)
     - [Requirements](#requirements)
     - [Installation](#installation)
     - [Developer installation](#developer-installation)
