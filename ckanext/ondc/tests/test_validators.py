@@ -131,11 +131,7 @@ class TestChoicesValidator:
         )
         assert not error
 
-    @pytest.mark.parametrize(
-        "field, value",
-        [
-            ("access_rights", "xxx")
-    ])
+    @pytest.mark.parametrize("field, value", [("access_rights", "xxx")])
     def test_invalid_choices(self, field, value):
         validator = tk.get_validator("ondc_choices")
         data, error = tk.navl_validate(
